@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(176, 175, 161);
+}
+
+.reg{
+    float:right;
+    margin-top: 50px;
+    margin-right: 80px;
+}
+
+label span{
+    color: red;
+}
+
+input{
+    width: 95%;
+    padding: 5px;
+    margin: auto;
+    margin-top: 2px;
+}
+
+textarea {
+    width: 95%;
+}
+
+select{
+    width: 95%;
+    padding: 5px;
+    margin-top: 2px;
+}
+
+.er{
+    color: red;
+}
+
+#list-container li{
+    list-style: none;
+    background-color: rgb(181, 179, 179);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+li span {
+    padding: 5px;
+    color:rgb(88, 84, 84);
+    cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input#DOB{
+    display: inline-block;
+    position: relative;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator{
+    background: transparent;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    color: transparent;
+    height: auto;
+    position: absolute;
+    cursor: pointer;
+    width: auto;
+}
+
+#eye-icon{
+    position: absolute;
+    top: 0%;
+    height: 100%;
+    right: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#eye-close{
+    display: none;
+}
+
+#confirm-eye-icon{
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    height: 100%;
+    top: 0%;
+    right: 12%;
+}
+
+#eye-close-confirm{
+    display: none;
+} 

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/10fbecbb09.js" crossorigin="anonymous"></script>
+  <title>Form Validation</title>
+</head>
+
+<body>
+  <button type="button" class="reg btn bg-primary text-white px-3" data-bs-toggle="modal" data-bs-target="#exampleModal"> Register </button>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-xl model-lg model-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Registration Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body mx-5">
+
+          <form id="registration">
+            <div class="row">
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="first">Firstname<span>*</span></label><br />
+                <input type="text" placeholder="firstname" name="firstname" id="first" value=""   />
+                <div id="fn" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="last">Lastname<span>*</span></label><br />
+                <input type="text" placeholder="lastname" name="lastname" id="last" value=""  /><br />
+                <div id="ln" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="sur">Surname<span>*</span></label><br />
+                <input type="text" placeholder="surname" name="surname" id="sur" value=""  />
+                <div id="sn" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="user">Username<span>*</span></label><br />
+                <input type="text" placeholder="username" name="username" id="user" autocomplete="username" value=""  />
+                <div id="un" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="mo.">Mobile No.<span>*</span></label><br />
+                <input type="tel" maxlength="10" placeholder="mobile No." name="Mobile" id="mo." value=""  onkeydown=""/>
+                <div id="mo" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="em">Email<span>*</span></label><br />
+                <input type="email" placeholder="email" name="email" id="em" value=""  />
+                <div id="ema" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="gender">Gender<span>*</span> </label><br />
+                <div class="row">
+                  <div class="col-4 d-flex">
+                    <input type="radio" name="gen" id="male" value="male" checked />
+                    <label for="male">Male</label>
+                  </div>
+
+                  <div class="col-4 d-flex">
+                    <input type="radio" name="gen" id="female" value="female"/>
+                    <label for="female">Female</label>
+                  </div>
+
+                  <div class="col-4 d-flex">
+                    <input type="radio" name="gen" id="other" value="other" />
+                    <label for="other">Other</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="DOB">Date Of Birth<span>*</span></label><br />
+                <input type="date" name="DOB" id="DOB" value="" max="" onchange="getAge()"/>
+                <div id="dob" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="age">age<span>*</span></label><br />
+                <input type="number" name="age" id="age" placeholder="age" value=""  disabled/>
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="con" >Country<span>*</span></label><br />
+                <select name="con" id="con" size="1">
+                  <option value="" selected="selected">Select the Country</option>
+                </select>
+                <div id="co" class="er"><i class="fa-solid fa-circle-exclamation"></i> <span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="state">State<span>*</span></label><br />
+                <select name="state" id="state" size="1">
+                  <option value="" selected="selected">Select the State</option>
+                </select>
+                <div id="sta" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="city">City<span>*</span></label><br />
+                <select name="city" id="city" size="1">
+                  <option value="" selected="selected">Select the City</option>
+                </select>
+                <div id="ci" class="er"><i class="fa-solid fa-circle-exclamation"></i> <span id="error"></span></div>
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="skill">Skill<span>*</span></label><br />
+                <input type="text" placeholder="add your skill" name="skill" id="skill" value="" onchange="addTask()"/>
+                <div id="ski" class="er"><i class="fa-solid fa-circle-exclamation"></i> <span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <ul id="list-container">
+                  
+                </ul>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="hoby">Hoby</label><br />
+                <div class="form-check" id="">
+                  <input class="form-check-input" type="checkbox" id="master-check" name="SelectAll" value="" >
+                  <label class="form-check-label" for="master-check">Select All</label>
+                </div>
+                <div class="form-check" >
+                  <input class="form-check-input box" type="checkbox" id="Cricket" name="Cricket" value="" onchange="isChecked()">
+                  <label class="form-check-label" for="Cricket">Cricket</label>
+                </div>
+                <div class="form-check" >
+                  <input class="form-check-input box" type="checkbox" id="Dancing" name="Dancing" value="" onchange="isChecked()">
+                  <label class="form-check-label" for="Dancing">Dancing</label>
+                </div>
+                <div class="form-check" >
+                  <input class="form-check-input box" type="checkbox" id="Swimming" name="Swimming" value="" onchange="isChecked()">
+                  <label class="form-check-label" for="Swimming">Swimming</label>
+                </div>
+              </div> 
+
+            </div>
+
+            <div class="row my-4">
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
+                <label for="add">Address<span>*</span></label><br />
+                <textarea name="add" id="add" value="add" ></textarea>
+                <div id="ad" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3 p">
+                <label for="pass">Password<span>*</span></label><br />
+               <div class="position-relative">
+                 <input type="password" name="pass" id="pass" placeholder="password" autocomplete="new-password" value=""  />
+                 <div id="eye-icon">
+                   <i class="fa-solid fa-eye" id="eye-open"></i>
+                   <i class="fa-solid fa-eye-slash" id="eye-close"></i>
+                 </div>
+               </div>
+                <div id="pw" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3 p">
+                <label for="cp">Confirm Password<span>*</span></label><br />
+                <div class="position-relative">
+                  <input type="password" name="cp" id="cp" placeholder="confirm password" autocomplete="new-password" value=""  />
+                  <div id="confirm-eye-icon">
+                    <i class="fa-solid fa-eye" id="eye-open-confirm"></i>
+                    <i class="fa-solid fa-eye-slash" id="eye-close-confirm"></i>
+                  </div>
+                </div>
+                <div id="cpw" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="R" >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary" value="submit"  onclick="refreshData()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
