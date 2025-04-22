@@ -15,7 +15,30 @@
 </head>
 
 <body>
-  <button type="button" class="reg btn bg-primary text-white px-3" data-bs-toggle="modal" data-bs-target="#exampleModal"> Register </button>
+  
+  <div class="container">
+    <div class="reg-button p-3">
+      <button type="button" class="reg btn bg-primary text-white px-3 " id="register" data-bs-toggle="modal" data-bs-target="#exampleModal"> Register </button>
+    </div>
+    <div class="showtable">
+      <table class="table table-striped">
+        <thead class="Head table-primary">
+          <tr>
+            <th>UserID</th>
+            <th>Username</th>
+            <th>Mobile No.</th>
+            <th>Email Id</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="entry">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog modal-xl model-lg model-sm">
@@ -31,19 +54,19 @@
             <div class="row">
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <label for="first">Firstname<span>*</span></label><br />
-                <input type="text" placeholder="firstname" name="firstname" id="first" value=""   />
+                <input type="text" placeholder="firstname" name="firstname" id="first" value=""   onkeypress="checkAlpha(event)"/>
                 <div id="fn" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
               </div>
 
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <label for="last">Lastname<span>*</span></label><br />
-                <input type="text" placeholder="lastname" name="lastname" id="last" value=""  /><br />
+                <input type="text" placeholder="lastname" name="lastname" id="last" value=""  onkeypress="checkAlpha(event)"/><br />
                 <div id="ln" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
               </div>
 
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <label for="sur">Surname<span>*</span></label><br />
-                <input type="text" placeholder="surname" name="surname" id="sur" value=""  />
+                <input type="text" placeholder="surname" name="surname" id="sur" value="" onkeypress="checkAlpha(event)" />
                 <div id="sn" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
               </div>
             </div>
@@ -51,13 +74,13 @@
             <div class="row my-4">
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <label for="user">Username<span>*</span></label><br />
-                <input type="text" placeholder="username" name="username" id="user" autocomplete="username" value=""  />
+                <input type="text" placeholder="username" name="username" id="user" autocomplete="username" value="" onchange="CheckUsername()" />
                 <div id="un" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
               </div>
-
+ 
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <label for="mo.">Mobile No.<span>*</span></label><br />
-                <input type="tel" maxlength="10" placeholder="mobile No." name="Mobile" id="mo." value=""  onkeydown=""/>
+                <input type="text" maxlength="10" placeholder="mobile No." name="Mobile" id="mo." value=""  onkeypress="CheckDigit(event)"/>
                 <div id="mo" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
               </div>
 
@@ -73,20 +96,21 @@
                 <label for="gender">Gender<span>*</span> </label><br />
                 <div class="row">
                   <div class="col-4 d-flex">
-                    <input type="radio" name="gen" id="male" value="male" checked />
+                    <input type="radio" name="gen" id="male" value="male" onchange="getGender()" />
                     <label for="male">Male</label>
                   </div>
 
                   <div class="col-4 d-flex">
-                    <input type="radio" name="gen" id="female" value="female"/>
+                    <input type="radio" name="gen" id="female" value="female" onchange="getGender()"/>
                     <label for="female">Female</label>
                   </div>
 
                   <div class="col-4 d-flex">
-                    <input type="radio" name="gen" id="other" value="other" />
+                    <input type="radio" name="gen" id="other" value="other" onchange="getGender()"/>
                     <label for="other">Other</label>
                   </div>
                 </div>
+                <div id="ge" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
               </div>
 
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
@@ -104,7 +128,7 @@
             <div class="row my-4">
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <label for="con" >Country<span>*</span></label><br />
-                <select name="con" id="con" size="1">
+                <select name="con" id="con" size="1" >
                   <option value="" selected="selected">Select the Country</option>
                 </select>
                 <div id="co" class="er"><i class="fa-solid fa-circle-exclamation"></i> <span id="error"></span></div>
@@ -135,27 +159,27 @@
               </div>
 
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
-                <ul id="list-container">
+                <ul id="list-container" class="p-0">
                   
                 </ul>
               </div>
 
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
-                <label for="hoby">Hoby</label><br />
+                <label for="hobby">Hobby</label><br />
                 <div class="form-check" id="">
                   <input class="form-check-input" type="checkbox" id="master-check" name="SelectAll" value="" >
                   <label class="form-check-label" for="master-check">Select All</label>
                 </div>
                 <div class="form-check" >
-                  <input class="form-check-input box" type="checkbox" id="Cricket" name="Cricket" value="" onchange="isChecked()">
+                  <input class="form-check-input box" type="checkbox" id="Cricket" name="SelectAll" value="Cricket" onchange="isChecked()">
                   <label class="form-check-label" for="Cricket">Cricket</label>
                 </div>
                 <div class="form-check" >
-                  <input class="form-check-input box" type="checkbox" id="Dancing" name="Dancing" value="" onchange="isChecked()">
+                  <input class="form-check-input box" type="checkbox" id="Dancing" name="SelectAll" value="Dancing" onchange="isChecked()">
                   <label class="form-check-label" for="Dancing">Dancing</label>
                 </div>
                 <div class="form-check" >
-                  <input class="form-check-input box" type="checkbox" id="Swimming" name="Swimming" value="" onchange="isChecked()">
+                  <input class="form-check-input box" type="checkbox" id="Swimming" name="SelectAll" value="Swimming" onchange="isChecked()">
                   <label class="form-check-label" for="Swimming">Swimming</label>
                 </div>
               </div> 
@@ -201,7 +225,8 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="R" >
             Close
           </button>
-          <button type="button" class="btn btn-primary" value="submit"  onclick="refreshData()">Save changes</button>
+          <button type="button" class="btn btn-primary" value="submit" id="saveChange" onclick="refreshData()">Save changes</button>
+          <button type="button" class="btn btn-primary" value="submit" id="updateChange" >Update changes</button>
         </div>
       </div>
     </div>

@@ -4,13 +4,11 @@
     box-sizing: border-box;
 }
 body{
-    background-color: rgb(176, 175, 161);
+    background-color: rgb(54, 33, 73);
 }
 
 .reg{
     float:right;
-    margin-top: 50px;
-    margin-right: 80px;
 }
 
 label span{
@@ -106,3 +104,11 @@ input[type='date']::-webkit-calendar-picker-indicator{
 #eye-close-confirm{
     display: none;
 } 
+
+.showtable{
+    margin-top: 70px;
+}
+
+tr > th{
+    background: red  
+};
