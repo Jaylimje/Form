@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 body{
-    background-color: rgb(54, 33, 73);
+    background-image: url("./Image/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .reg{
@@ -36,7 +38,7 @@ select{
     color: red;
 }
 
-#list-container li{
+#list-container p{
     list-style: none;
     background-color: rgb(181, 179, 179);
     display: inline-block;
@@ -46,16 +48,10 @@ select{
     cursor: pointer;
 }
 
-li span {
+p span {
     padding: 5px;
     color:rgb(88, 84, 84);
     cursor: pointer;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-    margin: 0;
 }
 
 input#DOB{
@@ -105,10 +101,36 @@ input[type='date']::-webkit-calendar-picker-indicator{
     display: none;
 } 
 
-.showtable{
-    margin-top: 70px;
+th.act{
+    text-align: center
 }
 
-tr > th{
-    background: red  
-};
+.backg{
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 24px;
+    margin-top: 64px;
+    border-radius: 20px;
+}
+
+.RowsPerPAges label{
+    width: 130px;
+    font-weight: 700;
+}
+
+#RowsPage{
+    width: 100px;
+}
+
+button:active{
+    background-color: aqua;
+}
+
+td i{
+    cursor: pointer;
+}
+
+input[name="gen"]{
+    width: fit-content;
+    border: none;
+    outline: none;
+}

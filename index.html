@@ -20,27 +20,40 @@
     <div class="reg-button p-3">
       <button type="button" class="reg btn bg-primary text-white px-3 " id="register" data-bs-toggle="modal" data-bs-target="#exampleModal"> Register </button>
     </div>
-    <div class="showtable">
-      <table class="table table-striped">
-        <thead class="Head table-primary">
-          <tr>
-            <th>UserID</th>
-            <th>Username</th>
-            <th>Mobile No.</th>
-            <th>Email Id</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="entry">
-        </tbody>
-      </table>
+
+    <div class="backg">
+      <nav class=" navbar-light mt-5 w-50">
+        <div class="container-fluid">
+          <form class="d-flex mb-3">
+            <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" value="" onkeyup="SearchEntry()" id="search" />
+            <button class="btn btn-primary" id="Search-item" type="submit" onclick="SearchEntry()">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div class="showtable">
+        <table class="table table-bg-dark table-striped">
+          <thead class="Head table-primary">
+            <tr>
+              <th>UserID</th>
+              <th>Firstname</th>
+              <th>Username <i class="fa-solid fa-sort" id="sortUser" onclick="UsersortedData()" style="cursor: pointer;"></i></th>
+              <th>Mobile No.</th>
+              <th>Email Id <i class="fa-solid fa-sort" id="sortEmail" onclick="EmailsortedData()" style="cursor: pointer;"></i></th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th class="act">Action</th>
+            </tr>
+          </thead>
+          <tbody id="entry">
+          </tbody>
+        </table>
+      </div>
     </div>
+    
   </div>
 
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog modal-xl model-lg model-sm">
       <div class="modal-content">
         <div class="modal-header">
@@ -154,19 +167,18 @@
             <div class="row my-4">
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <label for="skill">Skill<span>*</span></label><br />
-                <input type="text" placeholder="add your skill" name="skill" id="skill" value="" onchange="addTask()"/>
+                <input type="text" placeholder="add your skill" name="skill" id="skill" value="" />
                 <div id="ski" class="er"><i class="fa-solid fa-circle-exclamation"></i> <span id="error"></span></div>
               </div>
 
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <ul id="list-container" class="p-0">
-                  
                 </ul>
               </div>
 
               <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3">
                 <label for="hobby">Hobby</label><br />
-                <div class="form-check" id="">
+                <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="master-check" name="SelectAll" value="" >
                   <label class="form-check-label" for="master-check">Select All</label>
                 </div>
@@ -193,7 +205,7 @@
                 <div id="ad" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
               </div>
 
-              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3 p">
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3 p PassW">
                 <label for="pass">Password<span>*</span></label><br />
                <div class="position-relative">
                  <input type="password" name="pass" id="pass" placeholder="password" autocomplete="new-password" value=""  />
@@ -205,7 +217,7 @@
                 <div id="pw" class="er"><i class="fa-solid fa-circle-exclamation"></i><span id="error"></span></div>
               </div>
 
-              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3 p">
+              <div class="col col-md-6 col-lg-4 col-sm-12 col-12 mb-3 p PassW">
                 <label for="cp">Confirm Password<span>*</span></label><br />
                 <div class="position-relative">
                   <input type="password" name="cp" id="cp" placeholder="confirm password" autocomplete="new-password" value=""  />
@@ -226,13 +238,26 @@
             Close
           </button>
           <button type="button" class="btn btn-primary" value="submit" id="saveChange" onclick="refreshData()">Save changes</button>
-          <button type="button" class="btn btn-primary" value="submit" id="updateChange" >Update changes</button>
+          <button type="button" class="btn btn-primary" value="submit" id="updateChange" onclick="UpdateData(userid)">Update changes</button>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="navigate mt-5 d-flex justify-content-center">
+    <div aria-label="Page navigation example" class="d-flex justify-content-center" id="pagi"></div>
+    <div class="RowsPerPAges mx-5 d-flex">
+      <label for="RowsPage" class="m-auto" id="fed">Rows per page:</label>
+      <select id="RowsPage" class="m-auto" onchange="Items()">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+      </select>
+    </div>
+  </div>
+  
+
   <script src="script.js"></script>
 </body>
 
-</html>
+</html>   
