@@ -669,6 +669,13 @@ function NextButton(){
 
 function GotoPage(page){
   currentPage = page;
+  var Search = document.getElementById("search").value.toLowerCase();
+  if(Search != ""){
+    Entryarray = JSON.parse(localStorage.getItem("searching-data"));
+    currentPage = page;
+    DisplayData();
+    CreatePagination();
+  }
   DisplayData();
   CreatePagination();
 }
@@ -792,6 +799,7 @@ function ViewModel(UserID) {
 
 // ---------------------------------Delete Button----------------
 function DeleteData(userID) {
+  Entryarray = JSON.parse(localStorage.getItem("data"));
   if(confirm("Do you want to delete this entry?")){
     let DELETE = Entryarray.filter((x) => {
       return x.UserID != userID;
@@ -807,6 +815,7 @@ function DeleteData(userID) {
 
 // -------------------------------Update Button-----------------
 function UpdateData(userid) {
+  Entryarray = JSON.parse(localStorage.getItem('data'))
   for (let i in Entryarray) {
     if (userid == Entryarray[i].UserID) {
       isError = false;
@@ -959,6 +968,7 @@ function EmailsortedData(){
 function SearchEntry(){
   var Search = document.getElementById("search").value.toLowerCase();
   if(Search != ""){
+    Entryarray = JSON.parse(localStorage.getItem('data')); 
     var searching = Entryarray.filter((x) => {
       return x.firstname.toLowerCase().includes(Search);
     })
@@ -968,21 +978,21 @@ function SearchEntry(){
     DisplayData();
     CreatePagination();
     if(Entryarray.length == 0){
-      let tr = document.getElementById("entry")
-      tr.innerHTML = `<td colspan='8' style="text-align:center">No Record Found</td>`
-      tr.classList.add("no")
-      currentPage = 1;
+      document.getElementById("entry").innerHTML = `<td colspan='8' style="text-align:center">No Record Found</td>`
+      f.children[0].remove();
+      f.children[0].remove(); 
     }
     Rows.style.display = "none";
     document.getElementById("fed").style.display = "none";
   }
   else{
-    DisplayData();
-    CreatePagination();
     Rows.style.display = "block";
     document.getElementById("fed").style.display = "block";
+    Entryarray = JSON.parse(localStorage.getItem('data'));  
+    currentPage = 1;
+    DisplayData();
+    CreatePagination();
   }
-  Entryarray = JSON.parse(localStorage.getItem('data'));
 }
 document.getElementById("search").addEventListener("keypress", function(event){
   if(event.key == "Enter"){
