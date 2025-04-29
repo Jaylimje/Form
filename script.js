@@ -566,23 +566,6 @@ function refreshData() {
     for (let i = 0; i < v.length; i++) {
       v[i].checked = false;
     }
-    // FirstName.value = "";
-    // LastName.value = "";
-    // SurName.value = "";
-    // UserName.value = "";
-    // MobileNo.value = "";
-    // Email.value = "";
-    // Gender.value = "";
-    // Age.value = "";
-    // DOB.value = "";
-    // Country.value = "";
-    // State.value = "";
-    // City.value = "";
-    // Skill.value = "";
-    // List.innerText = "";
-    // Address.value = "";
-    // Password.value = "";
-    // CPassword.value = "";
   }
   localStorage.setItem("data", JSON.stringify(Entryarray));
   Entryarray = JSON.parse(localStorage.getItem("data"));
@@ -663,7 +646,7 @@ function CreatePagination(){
   document.getElementById("pagi").innerHTML = Buttons; 
   for(let i = 0; i<f.children.length; i++){
     if(f.children[i] == f.children[currentPage]){
-      f.children[i].classList.add("active")
+      f.children[i].classList.add("active");
     }
   }
 }
@@ -818,6 +801,7 @@ function DeleteData(userID) {
     CreateTable();
     DisplayData();
     CreatePagination();
+    SearchEntry();
   }
 }
 
@@ -895,54 +879,100 @@ function UpdateData(userid) {
   CreateTable();
   DisplayData();
   CreatePagination();
+  SearchEntry();
 }
 
 // -------------------------------sorting username-----------------
 var IsSorted = false
 function UsersortedData(){
-  Entryarray.sort((a, b) => {
-    if (IsSorted == true) {
-      return a.username.localeCompare(b.username); 
-    }
-    else {
-      return b.username.localeCompare(a.username); 
-    }
-  });
-  IsSorted = !IsSorted 
-  CreateTable();
-  DisplayData();
-  CreatePagination();
-}
-
-// -------------------------sorting email---------------------
-function EmailsortedData(){
-  Entryarray.sort((a, b) => {
-    if (IsSorted == true) {
-      return a.email.localeCompare(b.email); 
-    }
-    else {
-      return b.email.localeCompare(a.email); 
-    }
-  });
-  IsSorted = !IsSorted 
-  CreateTable();
-  DisplayData();
-  CreatePagination();
-}
-
-// --------------------------searching----------------------------
-function SearchEntry(){
-  let Search = document.getElementById("search").value.toLowerCase();
+  var Search = document.getElementById("search").value.toLowerCase();
   if(Search != ""){
     let searching = Entryarray.filter((x) => {
       return x.firstname.toLowerCase().includes(Search);
     })
     localStorage.setItem("searching-data", JSON.stringify(searching))
     Entryarray = JSON.parse(localStorage.getItem("searching-data"));
-    currentPage = 1;
+    Entryarray.sort((a, b) => {
+      if (IsSorted == true) {
+        return a.username.localeCompare(b.username); 
+      }
+      else {
+        return b.username.localeCompare(a.username); 
+      }
+    });
     CreateTable();
     DisplayData();
     CreatePagination();
+  }else{
+    Entryarray.sort((a, b) => {
+      if (IsSorted == true) {
+        return a.username.localeCompare(b.username); 
+      }
+      else {
+        return b.username.localeCompare(a.username); 
+      }
+    });
+    CreateTable();
+    DisplayData();
+    CreatePagination();  
+  }
+  IsSorted = !IsSorted 
+}
+
+// -------------------------sorting email---------------------
+function EmailsortedData(){
+  var Search = document.getElementById("search").value.toLowerCase();
+  if(Search != ""){
+    let searching = Entryarray.filter((x) => {
+      return x.firstname.toLowerCase().includes(Search);
+    })
+    localStorage.setItem("searching-data", JSON.stringify(searching))
+    Entryarray = JSON.parse(localStorage.getItem("searching-data"));
+    Entryarray.sort((a, b) => {
+      if (IsSorted == true) {
+        return a.email.localeCompare(b.email); 
+      }
+      else {
+        return b.email.localeCompare(a.email); 
+      }
+    });
+    CreateTable();
+    DisplayData();
+    CreatePagination();
+  }else{
+    Entryarray.sort((a, b) => {
+      if (IsSorted == true) {
+        return a.email.localeCompare(b.email); 
+      }
+      else {
+        return b.email.localeCompare(a.email); 
+      }
+    });
+    CreateTable();
+    DisplayData();
+    CreatePagination();
+  }
+  IsSorted = !IsSorted 
+}
+
+// --------------------------searching----------------------------
+function SearchEntry(){
+  var Search = document.getElementById("search").value.toLowerCase();
+  if(Search != ""){
+    var searching = Entryarray.filter((x) => {
+      return x.firstname.toLowerCase().includes(Search);
+    })
+    localStorage.setItem("searching-data", JSON.stringify(searching))
+    Entryarray = JSON.parse(localStorage.getItem("searching-data"));
+    currentPage = 1;
+    DisplayData();
+    CreatePagination();
+    if(Entryarray.length == 0){
+      let tr = document.getElementById("entry")
+      tr.innerHTML = `<td colspan='8' style="text-align:center">No Record Found</td>`
+      tr.classList.add("no")
+      currentPage = 1;
+    }
     Rows.style.display = "none";
     document.getElementById("fed").style.display = "none";
   }
