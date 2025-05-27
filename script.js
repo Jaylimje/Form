@@ -673,8 +673,6 @@ function GotoPage(page){
   if(Search != ""){
     Entryarray = JSON.parse(localStorage.getItem("searching-data"));
     currentPage = page;
-    DisplayData();
-    CreatePagination();
   }
   DisplayData();
   CreatePagination();
@@ -727,19 +725,7 @@ function OpenModel(UserID) {
     if (Edit[0].hobby.includes(v[i].value)) {
       v[i].checked = true;
     }
-  }
-
-  let isallChecked = true;
-  for (let i = 0; i < v.length; i++) {
-    if (v[i].checked == false) {
-      isallChecked = false;
-    }
-    if (isallChecked == true) {
-      master.checked = true;
-    }
-    if (isallChecked == false) {
-      master.checked = false;
-    }
+    isChecked()
   }
 
   List.innerText = "";
